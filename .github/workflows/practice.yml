@@ -25,9 +25,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
 
-    - name: Run hello.py
+    - name: Run main.py
       id: run_hello
-      run: python hello.py
+      run: python main.py
 
     - name: Verify output
       run: |
