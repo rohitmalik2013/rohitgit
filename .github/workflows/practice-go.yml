@@ -1,1 +1,38 @@
+name: Go Hello World
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.20'  # You can specify the Go version you need
+
+    - name: Run Go program and capture output
+      id: run_go
+      run: |
+        output=$(go run main.go)
+        echo "output=$output" >> $GITHUB_ENV
+        echo "$output"
+
+    - name: Verify output
+      run: |
+        if [[ "${{ env.output }}" == *"Hello, World!"* ]]; then
+          echo "Output is as expected."
+        else
+          echo "Output is not as expected."
+          exit 1
+        fi
