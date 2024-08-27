@@ -25,10 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
 
-    - name: Run hello.py and capture output
+    - name: Run main.py and capture output
       id: run_hello
       run: |
-        output=$(python hello.py)
+        output=$(python main.py)
         echo "output=$output" >> $GITHUB_ENV
         echo "$output"
 
